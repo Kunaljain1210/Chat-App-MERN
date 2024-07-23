@@ -1,5 +1,8 @@
 import jwt from "jsonwebtoken";
+import { config } from "dotenv";
 import User from "../model/user.model.js";
+
+console.log(process.env.JWT_SECRET);
 
 const protectRoute = async (req, res, next) => {
   try {
@@ -11,7 +14,7 @@ const protectRoute = async (req, res, next) => {
       });
     }
 
-    //yeah walla samajna hai
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     //if there is no decoded value or if its false
     if (!decoded) {
